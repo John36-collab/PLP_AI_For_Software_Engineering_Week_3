@@ -15,8 +15,14 @@ from collections import Counter
 import re
 import io
 import base64
-import cv2
-import numpy as np
+# Try to import cv2 (OpenCV), but provide fallback if not available
+try:
+    import cv2
+    CV2_AVAILABLE = True
+except ImportError:
+    CV2_AVAILABLE = False
+    import warnings
+    warnings.warn("OpenCV (cv2) not available. Using fallback image processing methods. Some features may be limited.", ImportWarning)
 from PIL import Image, ImageDraw
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import fetch_openml
@@ -123,10 +129,24 @@ def preprocess_image(image):
     """Preprocess an image for MNIST prediction"""
     # Convert to grayscale if needed
     if len(image.shape) == 3:
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        if CV2_AVAILABLE:
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        else:
+            # Fallback: Use PIL to convert to grayscale
+            from PIL import Image
+            pil_image = Image.fromarray(image)
+            pil_image = pil_image.convert('L')
+            image = np.array(pil_image)
     
     # Resize to 28x28
-    image = cv2.resize(image, (28, 28))
+    if CV2_AVAILABLE:
+        image = cv2.resize(image, (28, 28))
+    else:
+        # Fallback: Use PIL to resize
+        from PIL import Image
+        pil_image = Image.fromarray(image)
+        pil_image = pil_image.resize((28, 28), Image.Resampling.LANCZOS)
+        image = np.array(pil_image)
     
     # Invert colors (MNIST has white digits on black background)
     image = 255 - image
