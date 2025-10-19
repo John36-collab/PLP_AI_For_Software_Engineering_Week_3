@@ -47,7 +47,7 @@ def load_iris_model():
         return model_data
     else:
         # Train a new model
-        df = pd.read_csv('Data/Iris.csv')
+        df = pd.read_csv('Data/Iris.csv') 
         
         # Data preprocessing
         label_encoder = LabelEncoder()
@@ -276,7 +276,7 @@ def draw_digit():
 @st.cache_resource
 def load_nlp_model():
     """Load spaCy model for NER"""
-    try:
+    try: 
         nlp = spacy.load("en_core_web_sm")
         # Set max_length to handle longer texts (up to 10M characters)
         nlp.max_length = 10000000
