@@ -1,6 +1,6 @@
 # AI Analytics Dashboard
 
-A Streamlit web application that combines machine learning and natural language processing capabilities based on two analysis notebooks: Iris Species Classification and NER Product Analysis.
+A Streamlit web application that combines machine learning and natural language processing capabilities based on multiple analysis notebooks: Iris Species Classification, NER Product Analysis, and MNIST Handwritten Digit Recognition.
 
 ## Features
 
@@ -19,9 +19,16 @@ A Streamlit web application that combines machine learning and natural language 
 - Export results as CSV
 - Support for text input and file uploads
 
+### 🖼️ MNIST Handwritten Digit Recognition
+- Train a Convolutional Neural Network (CNN) to recognize handwritten digits
+- Visualize model predictions on sample images
+- Display accuracy metrics and training history
+- Interactive prediction interface with digit drawing capabilities
+- Real-time digit recognition
+
 ## Live Demo
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-demo-link-here.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://plpaiforsoftwareengineeringweek3-cyber.streamlit.app/)
 
 👆 **Click the badge above** to interact with the live demo of the AI Analytics Dashboard!
 
@@ -41,6 +48,11 @@ A Streamlit web application that combines machine learning and natural language 
 ![Dashboard Overview](screenshot_dashboard_overview.png)
 
 *Main navigation and feature selection interface*
+
+### MNIST Digit Recognition Interface
+![MNIST Analysis](screenshots/mnist.png)
+
+*Handwritten digit recognition with CNN model and prediction visualization*
 
 ## Installation
 
@@ -92,6 +104,14 @@ The application will open in your default web browser at `http://localhost:8501`
 - Overview of the application features
 - Navigation instructions
 
+### MNIST Digit Recognition
+1. **Model Training**: Train the CNN model on the MNIST dataset
+2. **View Results**:
+   - Training and validation accuracy/loss plots
+   - Confusion matrix
+   - Sample predictions with true vs predicted labels
+3. **Make Predictions**: Draw digits or upload images to get predictions
+
 ### Iris Classification
 1. **Data Selection**: Choose between the sample dataset or upload your own CSV
 2. **Model Training**: Adjust parameters and train the model
@@ -123,7 +143,8 @@ The application will open in your default web browser at `http://localhost:8501`
 │   └── Iris.csv         # Iris dataset
 └── notebooks/           # Original notebooks
     ├── Iris_Decision_Tree_Analysis.ipynb
-    └── NER_Product_Analysis.ipynb
+    ├── NER_Product_Analysis.ipynb
+    └── MNIST.ipynb
 ```
 
 ## Technical Details
@@ -133,6 +154,13 @@ The application will open in your default web browser at `http://localhost:8501`
 - Features: Sepal length, sepal width, petal length, petal width
 - Target: Iris species (setosa, versicolor, virginica)
 - Visualization: Confusion matrix, feature importance, decision tree
+
+### MNIST Digit Recognition
+- Algorithm: Convolutional Neural Network (CNN)
+- Architecture: 3 convolutional layers with pooling, dropout, and dense layers
+- Input: 28x28 grayscale images of handwritten digits (0-9)
+- Output: Probability distribution over 10 digit classes
+- Metrics: Accuracy, loss visualization, prediction examples
 
 ### NER Product Analysis
 - NLP Library: spaCy
@@ -172,6 +200,7 @@ The application will open in your default web browser at `http://localhost:8501`
 
 - For large datasets in Iris classification, consider reducing the max_depth parameter
 - NER analysis processes text sequentially; for very large files, consider batch processing
+- MNIST model training is GPU-accelerated when available; for CPU training, consider reducing epochs
 
 ## License
 
