@@ -35,12 +35,12 @@ A Streamlit web application that combines machine learning and natural language 
 ## Screenshots
 
 ### Iris Species Classification Interface
-![Iris Classification](screenshots/iris species.png)
+![Iris Classification](screenshots/iris_species.png)
 
 *Interactive prediction interface with feature importance visualization*
 
 ### NER Product Analysis Interface
-![NER Analysis](screenshots/product analysis.png)
+![NER Analysis](screenshots/product_analysis.png)
 
 *Named Entity Recognition and sentiment analysis results*
 
